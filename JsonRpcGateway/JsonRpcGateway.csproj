@@ -3,6 +3,16 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.0</TargetFramework>
     <LangVersion>7.1</LangVersion>
+    <RootNamespace>JsonRpcGateway</RootNamespace>
+    <PackageId>JsonRpcGateway</PackageId>
+    <Version>0.1.0-pre</Version>
+    <Authors>acple</Authors>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLicenseUrl>https://github.com/acple/JsonRpcGateway/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/acple/JsonRpcGateway</PackageProjectUrl>
+    <Description>A simple JSON-RPC gateway for C#</Description>
+    <Copyright>(C) 2017 acple</Copyright>
+    <PackageTags>json;rpc</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
