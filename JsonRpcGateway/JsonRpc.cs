@@ -89,7 +89,7 @@ namespace JsonRpcGateway
                     ? new[] { request.Parameters.ToObject(parameters[0].ParameterType) }
                     : (request.Parameters is JObject jObject) // named parameters
                         ? parameters
-                            .Select(parameter => jObject[parameter.Name]?.ToObject(parameter.ParameterType))
+                            .Select(parameter => jObject[parameter.Name].ToObject(parameter.ParameterType))
                             .ToArray()
                         : parameters
                             .Select(parameter => parameter.ParameterType)

@@ -93,5 +93,17 @@ namespace UnitTest.JsonRpcGateway
             response.Error.ErrorCode.Is(ErrorCode.InvalidParameters);
             response.Error.Message.Is("Parameter length mismatch.");
         }
+
+        [Fact]
+        public void MissingParameterName()
+        {
+            var request = @"{""jsonrpc"":""2.0"",""method"":""StandardMethod"",""params"":{""b"":false,""c"":123}}";
+
+            var response = this._jsonrpc.Run(request).IsInstanceOf<ErrorResponse>();
+
+            response.Error.ErrorCode.Is(ErrorCode.InvalidParameters);
+            response.Error.Message.Is("Invalid method parameters.");
+            response.Error.InnerException.IsInstanceOf<NullReferenceException>();
+        }
     }
 }
