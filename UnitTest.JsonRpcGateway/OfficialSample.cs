@@ -33,7 +33,6 @@ namespace UnitTest.JsonRpcGateway
         {
             var request = @"{""jsonrpc"": ""2.0"", ""method"": ""subtract"", ""params"": [42, 23], ""id"": 1}";
             // @"{""jsonrpc"": ""2.0"", ""result"": 19, ""id"": 1}";
-
             var response = this._jsonrpc.Run(request).IsInstanceOf<SuccessResponse>();
             response.Id.Is(1L);
             response.Result.Is(19);
@@ -76,7 +75,7 @@ namespace UnitTest.JsonRpcGateway
         [Fact]
         public void Notification()
         {
-            var request =  @"{""jsonrpc"": ""2.0"", ""method"": ""Update"", ""params"": [1,2,3,4,5]}";
+            var request = @"{""jsonrpc"": ""2.0"", ""method"": ""Update"", ""params"": [1,2,3,4,5]}";
             // no response
 
             var response = this._jsonrpc.Run(request);
@@ -111,7 +110,7 @@ namespace UnitTest.JsonRpcGateway
             response.Id.IsNull();
             response.Error.ErrorCode.Is(ErrorCode.ParseError);
         }
-            // rpc call with invalid Request object:
+        // rpc call with invalid Request object:
 
         [Fact]
         public void InvalidRequest()
