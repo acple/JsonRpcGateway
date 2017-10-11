@@ -15,6 +15,9 @@ namespace UnitTest.JsonRpcGateway
 
         public string StandardMethod(int a, bool b)
             => a.ToString() + b.ToString();
+
+        public int ServerDefinedError(int code)
+            => throw new JsonRpcException(code, "server-defined error");
     }
 
     public class ErrorTests
@@ -104,6 +107,17 @@ namespace UnitTest.JsonRpcGateway
             response.Error.ErrorCode.Is(ErrorCode.InvalidParameters);
             response.Error.Message.Is("Invalid method parameters.");
             response.Error.InnerException.IsInstanceOf<NullReferenceException>();
+        }
+
+        [Fact]
+        public void ServerDefinedErrorCodeOutOfRange()
+        {
+            var request = @"{""jsonrpc"":""2.0"",""method"":""ServerDefinedError"",""params"":999,""id"":999}";
+
+            var response = this._jsonrpc.Run(request).IsInstanceOf<ErrorResponse>();
+
+            response.Error.ErrorCode.Is(ErrorCode.InternalError);
+            response.Error.InnerException.IsInstanceOf<ArgumentOutOfRangeException>();
         }
     }
 }
