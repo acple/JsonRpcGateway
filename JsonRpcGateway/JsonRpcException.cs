@@ -24,7 +24,7 @@ namespace JsonRpcGateway
         public JsonRpcException(int code, string message, Exception exception) : base(message, exception)
         {
             if (code < 0 || 99 < code)
-                throw new ArgumentException();
+                throw new ArgumentOutOfRangeException(nameof(code), code, "Server-defined errorcode must be between 0 and 99.");
 
             const int _ServerError = -32000;
             this.ErrorCode = (ErrorCode)(_ServerError - code);
