@@ -11,7 +11,7 @@ namespace UnitTest.JsonRpcGateway
             => throw new Exception("this is error");
 
         public int ThrowJsonRpcExceptionByUser(int a)
-            => throw new JsonRpcException(12, "this is user-defined error");
+            => throw new JsonRpcException(12, "this is server-defined error");
 
         public string StandardMethod(int a, bool b)
             => a.ToString() + b.ToString();
@@ -62,7 +62,7 @@ namespace UnitTest.JsonRpcGateway
             var response = this._jsonrpc.Run(request).IsInstanceOf<ErrorResponse>();
 
             response.Error.ErrorCode.Is((ErrorCode)(-32012));
-            response.Error.Message.Is("this is user-defined error");
+            response.Error.Message.Is("this is server-defined error");
         }
 
         [Fact]
